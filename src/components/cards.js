@@ -1,4 +1,4 @@
-const deck = [
+const CARDS = [
     {
         id: 0,
         question: 'O que é JSX?',
@@ -41,4 +41,4 @@ const deck = [
     },
 ];
 
-export default deck
+export default CARDS
