@@ -15,6 +15,7 @@ export default function Main() {
   const [hits, setHits] = useState(0);
   const [loadingEnd, setLoadingEnd] = useState(false);
   const [achieved, setAchieved] = useState("");
+  const [optionValue, setOptionValue] = useState("");
   const [array, setArray] = useState([
     <li>
       <img src={PlayImg} />
@@ -42,23 +43,35 @@ export default function Main() {
     </li>,
   ]);
 
-  function endPage(a){
-    setAchieved(a)
-    setLoadingEnd(true)
+  function endPage(a) {
+    setAchieved(a);
+    setLoadingEnd(true);
   }
 
-  if(turnedCard.length === 8){
-    if(hits >= goalDeck){
-      setTimeout(() => endPage(true), 1000)
-    } else{
-      setTimeout(() => endPage(false), 1000)      
+  if (turnedCard.length === 8) {
+    if (hits >= goalDeck) {
+      setTimeout(() => endPage(true), 1000);
+    } else {
+      setTimeout(() => endPage(false), 1000);
     }
   }
 
   return (
     <>
-      <WelcomeUser setDeck={setDeck} goalDeck={goalDeck} setGoalDeck={setGoalDeck} />
-      <CongratUser goalDeck={goalDeck} hits={hits} loadingEnd={loadingEnd} achieved={achieved} />
+      <WelcomeUser
+        setDeck={setDeck}
+        goalDeck={goalDeck}
+        setGoalDeck={setGoalDeck}
+        optionValue={optionValue}
+        setOptionValue={setOptionValue}
+      />
+      <CongratUser
+        goalDeck={goalDeck}
+        hits={hits}
+        loadingEnd={loadingEnd}
+        achieved={achieved}
+        optionValue={optionValue}
+      />
       <ScreenContainer>
         <LogoContainer>
           <img src={logo} alt="Logo ZapRecall" />

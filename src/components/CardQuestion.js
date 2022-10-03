@@ -14,7 +14,7 @@ export default function CardQuestion({
   array,
   setArray,
   hits,
-  setHits
+  setHits,
 }) {
   const { id, question, answer } = quest;
 
@@ -51,32 +51,43 @@ export default function CardQuestion({
 
   return (
     <>
-      <Front face={cardFace === "front"}>
-        <p>Pergunta {numberQuest}</p>
+      <Front face={cardFace === "front"} data-identifier="flashcard">
+        <p data-identifier="flashcard-index-item">Pergunta {numberQuest}</p>
         <img
           src={PlayImg}
           onClick={() => setCardFace("question")}
           alt="Ícone de play"
+          data-identifier="flashcard-show-btn"
         />
       </Front>
       <Question face={cardFace === "question"}>
-        <p>{question}</p>
+        <p data-identifier="flashcard-question">{question}</p>
         <img
           src={turnImg}
           onClick={() => setCardFace("answer")}
           alt="Ícone de inversão"
+          data-identifier="flashcard-turn-btn"
         />
       </Question>
       <Answer face={cardFace === "answer"}>
-        <p>{answer}</p>
+        <p data-identifier="flashcard-answer">{answer}</p>
         <ButtonsContainer>
-          <NotReaction onClick={() => answerCard("Not", numberQuest)}>
+          <NotReaction
+            onClick={() => answerCard("Not", numberQuest)}
+            data-identifier="forgot-btn"
+          >
             Não lembrei
           </NotReaction>
-          <AlmostReaction onClick={() => answerCard("Almost", numberQuest)}>
+          <AlmostReaction
+            onClick={() => answerCard("Almost", numberQuest)}
+            data-identifier="almost-forgot-btn"
+          >
             Quase não lembrei
           </AlmostReaction>
-          <ZapReaction onClick={() => answerCard("Zap", numberQuest)}>
+          <ZapReaction
+            onClick={() => answerCard("Zap", numberQuest)}
+            data-identifier="zap-btn"
+          >
             Zap!
           </ZapReaction>
         </ButtonsContainer>
@@ -136,11 +147,14 @@ const Question = styled(Front)`
     right: 10px;
   }
 `;
-const Answer = styled(Question)``;
+const Answer = styled(Question)`
+  height: auto;
+`;
 const ButtonsContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
+  margin-top: 10px;
 `;
 const ButtonTemplate = styled.button`
   width: 90px;

@@ -3,8 +3,13 @@ import styled from "styled-components";
 import { useState } from "react";
 import CARDS from "./cards";
 
-export default function WelcomeUser({ setDeck, goalDeck, setGoalDeck }) {
-  const [optionValue, setOptionValue] = useState("");
+export default function WelcomeUser({
+  setDeck,
+  goalDeck,
+  setGoalDeck,
+  optionValue,
+  setOptionValue,
+}) {
   const [loadingPage, setLoadingPage] = useState(true);
   const [enableButton, setEnableButton] = useState(true);
 
@@ -13,15 +18,30 @@ export default function WelcomeUser({ setDeck, goalDeck, setGoalDeck }) {
     setDeck(CARDS[value]);
   }
   function option(e) {
-    setOptionValue(e.target.value)
+    setOptionValue(e.target.value);
     if (goalDeck !== "") {
       setEnableButton(false);
     }
   }
   function goal(e) {
-    setGoalDeck(e.target.value)
-    if (optionValue !== "") {
-      setEnableButton(false);
+    const value = Number(e.target.value);
+    console.log(value);
+    if (value < 1 || value > 8 || value === NaN) {
+      let newValue = prompt("Por favor insira uma meta de zaps entre 1 a 8");
+      newValue = Number(newValue);
+      while (newValue < 1 || newValue > 8 || newValue === NaN) {
+        newValue = prompt("Por favor insira uma meta de zaps entre 1 a 8");
+        newValue = Number(newValue);
+      }
+      setGoalDeck(newValue);
+      if (optionValue !== "") {
+        setEnableButton(false);
+      }
+    } else {
+      setGoalDeck(value);
+      if (optionValue !== "") {
+        setEnableButton(false);
+      }
     }
   }
 
@@ -33,20 +53,33 @@ export default function WelcomeUser({ setDeck, goalDeck, setGoalDeck }) {
         name="seletor"
         value={optionValue}
         onChange={(e) => option(e)}
+        data-identifier="deck-selector"
       >
-        <option value="" disabled selected>
+        <option value="" disabled selected data-identifier="deck-option">
           Escolha seu deck
         </option>
-        <option value="react">React</option>
-        <option value="JavaScript">JavaScript</option>
+        <option value="react" data-identifier="deck-option">
+          React
+        </option>
+        <option value="JavaScript" data-identifier="deck-option">
+          JavaScript
+        </option>
+        <option value="html" data-identifier="deck-option">
+          HTML
+        </option>
       </select>
       <input
         placeholder="Digite sua meta de zaps..."
         onChange={(e) => goal(e)}
         value={goalDeck}
+        data-identifier="goals-input"
       />
-      <button onClick={() => load(optionValue)} disabled={enableButton}>
-        Iniciar Recall!
+      <button
+        onClick={() => load(optionValue)}
+        disabled={enableButton}
+        data-identifier="start-btn"
+      >
+        Iniciar Recall
       </button>
     </Tela>
   );
@@ -99,7 +132,19 @@ const Tela = styled.div`
       color: #ffffff;
       border: 1px solid #ffffff;
     }
+    &:disabled {
+      cursor: default;
+      color: #c0c0c0;
+      background: #e8e8e8;
+      transition: none;
+      box-shadow: none;
+      &:hover,
+      &:focus {
+        all: initial;
+      }
+    }
   }
+
   select {
     width: 246px;
     height: 54px;

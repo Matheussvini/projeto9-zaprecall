@@ -9,24 +9,36 @@ export default function Answered({ result, numberQuest, setCardFace }) {
       setCardFace("");
       return (
         <Finish color={"green"}>
-          <p>Pergunta {numberQuest}</p>
-          <img src={ZapImg} alt="Ícone de resposta correto" />
+          <p data-identifier="flashcard-index-item">Pergunta {numberQuest}</p>
+          <img
+            src={ZapImg}
+            alt="Ícone de resposta correto"
+            data-identifier="flashcard-status"
+          />
         </Finish>
       );
     case "Almost":
       setCardFace("");
       return (
         <Finish color={"orange"}>
-          <p>Pergunta {numberQuest}</p>
-          <img src={AlmostImg} alt="Ícone de resposta quase correta" />
+          <p data-identifier="flashcard-index-item">Pergunta {numberQuest}</p>
+          <img
+            src={AlmostImg}
+            alt="Ícone de resposta quase correta"
+            data-identifier="flashcard-status"
+          />
         </Finish>
       );
     case "Not":
       setCardFace("");
       return (
         <Finish color={"red"}>
-          <p>Pergunta {numberQuest}</p>
-          <img src={NotImg} alt="Ícone de resposta errada" />
+          <p data-identifier="flashcard-index-item">Pergunta {numberQuest}</p>
+          <img
+            src={NotImg}
+            alt="Ícone de resposta errada"
+            data-identifier="flashcard-status"
+          />
         </Finish>
       );
     default:
@@ -72,10 +84,10 @@ const Finish = styled(Front)`
     color: ${(props) => props.color};
     text-decoration: line-through;
   }
-  img{
+  img {
     cursor: default;
     transition: initial;
-    &:hover{
+    &:hover {
       all: initial;
     }
   }

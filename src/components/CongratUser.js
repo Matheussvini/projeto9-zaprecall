@@ -2,19 +2,27 @@ import logo from "../images/logo.png";
 import styled from "styled-components";
 import { useState } from "react";
 
-export default function CongratUser({ goalDeck, hits, loadingEnd, achieved }) {
+export default function CongratUser({
+  goalDeck,
+  hits,
+  loadingEnd,
+  achieved,
+  optionValue,
+}) {
   function Texto() {
     if (achieved) {
       return (
         <p>
-          Parabéns, você bateu a sua meta de {goalDeck} zaps e fez {hits} zaps!
+          Parabéns, você bateu a sua meta de {goalDeck} zaps no deck{" "}
+          {optionValue} e fez {hits} zaps!
         </p>
       );
     } else {
       return (
         <p>
-          Poxa! Você não alcançou a sua meta de {goalDeck} zaps e fez apenas{" "}
-          {hits} zaps. Estude mais um pouco e tente novamente.
+          Poxa! Você não alcançou a sua meta de {goalDeck} zaps no deck{" "}
+          {optionValue} e fez apenas {hits} zaps. Estude mais um pouco e tente
+          novamente.
         </p>
       );
     }
@@ -25,7 +33,9 @@ export default function CongratUser({ goalDeck, hits, loadingEnd, achieved }) {
       <img src={logo} alt="" />
       <h1>ZapRecall</h1>
       <Texto />
-      <button onClick={window.reload}>Restart ZapRecall</button>
+      <button onClick={() => window.location.reload()}>
+        Restart ZapRecall
+      </button>
     </EndScreen>
   );
 }
@@ -88,7 +98,7 @@ const EndScreen = styled.div`
     transition: color 100ms;
     &:hover,
     &:focus {
-      background-color: #e62143;
+      background-color: #d70900;
       color: #ffffff;
       border: 1px solid #ffffff;
     }

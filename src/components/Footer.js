@@ -3,12 +3,10 @@ import styled from "styled-components";
 export default function Footer({ turnedCardLength, cards, array }) {
   return (
     <Container>
-      <p>
+      <p data-identifier="flashcard-counter">
         {turnedCardLength}/{cards.length} CONCLUÍDOS
       </p>
-      <List>
-        {array}
-      </List>
+      <List>{array}</List>
     </Container>
   );
 }
@@ -30,10 +28,10 @@ const Container = styled.div`
   padding: 10px;
 `;
 const List = styled.ul`
-display: flex;
-justify-content: space-between;
-li{
+  display: flex;
+  justify-content: space-between;
+  li {
     margin: 5px;
     margin-top: 10px;
-}
+  }
 `;
