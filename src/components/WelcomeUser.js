@@ -140,7 +140,7 @@ const Tela = styled.div`
       box-shadow: none;
       &:hover,
       &:focus {
-        all: initial;
+        all: none;
       }
     }
   }
