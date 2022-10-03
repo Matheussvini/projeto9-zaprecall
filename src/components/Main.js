@@ -17,29 +17,29 @@ export default function Main() {
   const [achieved, setAchieved] = useState("");
   const [optionValue, setOptionValue] = useState("");
   const [array, setArray] = useState([
-    <li>
-      <img src={PlayImg} />
+    <li key={1} >
+      <img src={PlayImg} alt="Ícone de play (flashcard ainda não visto)" />
     </li>,
-    <li>
-      <img src={PlayImg} />
+    <li key={2} >
+      <img src={PlayImg} alt="Ícone de play (flashcard ainda não visto)" />
     </li>,
-    <li>
-      <img src={PlayImg} />
+    <li key={3} >
+      <img src={PlayImg} alt="Ícone de play (flashcard ainda não visto)" />
     </li>,
-    <li>
-      <img src={PlayImg} />
+    <li key={4} >
+      <img src={PlayImg} alt="Ícone de play (flashcard ainda não visto)" />
     </li>,
-    <li>
-      <img src={PlayImg} />
+    <li key={5} >
+      <img src={PlayImg} alt="Ícone de play (flashcard ainda não visto)" />
     </li>,
-    <li>
-      <img src={PlayImg} />
+    <li key={6} >
+      <img src={PlayImg} alt="Ícone de play (flashcard ainda não visto)" />
     </li>,
-    <li>
-      <img src={PlayImg} />
+    <li key={7} >
+      <img src={PlayImg} alt="Ícone de play (flashcard ainda não visto)" />
     </li>,
-    <li>
-      <img src={PlayImg} />
+    <li key={8} >
+      <img src={PlayImg} alt="Ícone de play (flashcard ainda não visto)" />
     </li>,
   ]);
 
@@ -87,7 +87,7 @@ export default function Main() {
           setHits={setHits}
         />
         <Footer
-          turnedCardLength={turnedCard.length}
+          turnedCard={turnedCard}
           cards={deck}
           array={array}
           setArray={setArray}

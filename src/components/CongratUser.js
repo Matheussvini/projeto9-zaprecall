@@ -1,6 +1,5 @@
 import logo from "../images/logo.png";
 import styled from "styled-components";
-import { useState } from "react";
 
 export default function CongratUser({
   goalDeck,

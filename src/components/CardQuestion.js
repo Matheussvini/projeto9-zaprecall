@@ -22,11 +22,6 @@ export default function CardQuestion({
   const [localResult, setLocalResult] = useState("");
   const numberQuest = id + 1;
 
-  // function turnCard(i) {
-  // setCardFace("answer");
-  //setTurnedCard([...turnedCard, i]);
-  //}
-
   function answerCard(result, i) {
     const newArray = [...array];
     let image;
@@ -39,8 +34,8 @@ export default function CardQuestion({
       image = NotImg;
     }
     newArray[numberQuest - 1] = (
-      <li>
-        <img src={image} />
+      <li key={numberQuest} >
+        <img src={image} alt="Ícone de progresso da resposta" />
       </li>
     );
     setTurnedCard([...turnedCard, i]);

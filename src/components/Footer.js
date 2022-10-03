@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export default function Footer({ turnedCardLength, cards, array }) {
+export default function Footer({ turnedCard, cards, array }) {
   return (
     <Container>
       <p data-identifier="flashcard-counter">
-        {turnedCardLength}/{cards.length} CONCLUÍDOS
+        {turnedCard.length}/{cards.length} CONCLUÍDOS
       </p>
       <List>{array}</List>
     </Container>

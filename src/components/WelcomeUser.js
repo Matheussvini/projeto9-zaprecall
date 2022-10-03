@@ -24,19 +24,20 @@ export default function WelcomeUser({
     }
   }
   function goal(e) {
-    const value = Number(e.target.value);
-    if (value < 1 || value > 8 || value === NaN) {
+    const value = e.target.value;
+    console.log(typeof value)
+    if (value < 1 || value > 8 ) {
       let newValue = prompt("Por favor insira uma meta de zaps entre 1 a 8");
-      newValue = Number(newValue);
-      while (newValue < 1 || newValue > 8 || newValue === NaN) {
+      while (newValue < 1 || newValue > 8) {
+        console.log(typeof newValue)
         newValue = prompt("Por favor insira uma meta de zaps entre 1 a 8");
-        newValue = Number(newValue);
       }
       setGoalDeck(newValue);
       if (optionValue !== "") {
         setEnableButton(false);
       }
     } else {
+      console.log("else")
       setGoalDeck(value);
       if (optionValue !== "") {
         setEnableButton(false);
@@ -54,7 +55,7 @@ export default function WelcomeUser({
         onChange={(e) => option(e)}
         data-identifier="deck-selector"
       >
-        <option value="" disabled selected data-identifier="deck-option">
+        <option value="" disabled data-identifier="deck-option">
           Escolha seu deck
         </option>
         <option value="react" data-identifier="deck-option">
@@ -68,6 +69,7 @@ export default function WelcomeUser({
         </option>
       </select>
       <input
+        type="number"
         placeholder="Digite sua meta de zaps..."
         onChange={(e) => goal(e)}
         value={goalDeck}
