@@ -1,11 +1,14 @@
 import styled from "styled-components";
 
-export default function Footer({ turnedCardLength, cardsLength }) {
+export default function Footer({ turnedCardLength, cards, array }) {
   return (
     <Container>
       <p>
-        {turnedCardLength}/{cardsLength} CONCLUÍDOS
-      </p>      
+        {turnedCardLength}/{cards.length} CONCLUÍDOS
+      </p>
+      <List>
+        {array}
+      </List>
     </Container>
   );
 }
@@ -25,4 +28,12 @@ const Container = styled.div`
   font-size: 18px;
   color: #333333;
   padding: 10px;
+`;
+const List = styled.ul`
+display: flex;
+justify-content: space-between;
+li{
+    margin: 5px;
+    margin-top: 10px;
+}
 `;

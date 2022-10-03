@@ -2,11 +2,10 @@ import ZapImg from "../images/icone_certo.png";
 import AlmostImg from "../images/icone_quase.png";
 import NotImg from "../images/icone_erro.png";
 import styled from "styled-components";
-//import Front from "./Questions";
 
 export default function Answered({ result, numberQuest, setCardFace }) {
   switch (result) {
-    case "zap":
+    case "Zap":
       setCardFace("");
       return (
         <Finish color={"green"}>
@@ -14,7 +13,7 @@ export default function Answered({ result, numberQuest, setCardFace }) {
           <img src={ZapImg} alt="Ícone de resposta correto" />
         </Finish>
       );
-    case "almost":
+    case "Almost":
       setCardFace("");
       return (
         <Finish color={"orange"}>
@@ -22,7 +21,7 @@ export default function Answered({ result, numberQuest, setCardFace }) {
           <img src={AlmostImg} alt="Ícone de resposta quase correta" />
         </Finish>
       );
-    case "not":
+    case "Not":
       setCardFace("");
       return (
         <Finish color={"red"}>

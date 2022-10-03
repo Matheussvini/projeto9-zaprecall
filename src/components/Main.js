@@ -4,12 +4,44 @@ import Questions from "./Questions";
 import logo from "../images/logo.png";
 import { useState } from "react";
 import Footer from "./Footer";
+import PlayImg from "../images/seta_play.png";
+import ZapImg from "../images/icone_certo.png";
+import AlmostImg from "../images/icone_quase.png";
+import NotImg from "../images/icone_erro.png";
+import WelcomeUser from "./WelcomeUser";
 
 export default function Main() {
   const [turnedCard, setTurnedCard] = useState([]);
+  const [array, setArray] = useState([
+    <li>
+      <img src={PlayImg} />
+    </li>,
+    <li>
+      <img src={PlayImg} />
+    </li>,
+    <li>
+      <img src={PlayImg} />
+    </li>,
+    <li>
+      <img src={PlayImg} />
+    </li>,
+    <li>
+      <img src={PlayImg} />
+    </li>,
+    <li>
+      <img src={PlayImg} />
+    </li>,
+    <li>
+      <img src={PlayImg} />
+    </li>,
+    <li>
+      <img src={PlayImg} />
+    </li>,
+  ]);
 
   return (
     <>
+      <WelcomeUser />
       <ScreenContainer>
         <LogoContainer>
           <img src={logo} alt="Logo ZapRecall" />
@@ -19,13 +51,19 @@ export default function Main() {
           cards={CARDS}
           turnedCard={turnedCard}
           setTurnedCard={setTurnedCard}
+          array={array}
+          setArray={setArray}
         />
-        <Footer turnedCardLength={turnedCard.length} cardsLength={CARDS.length}/>
+        <Footer
+          turnedCardLength={turnedCard.length}
+          cards={CARDS}
+          array={array}
+          setArray={setArray}
+        />
       </ScreenContainer>
     </>
   );
 }
-
 const ScreenContainer = styled.div`
   background-color: #fb6b6b;
   width: 100vw;
@@ -35,7 +73,7 @@ const ScreenContainer = styled.div`
   align-items: center;
   margin: 0px;
   padding: 0px;
-  padding-bottom: 70px;
+  padding-bottom: 100px;
 `;
 const LogoContainer = styled.div`
   display: flex;
@@ -44,7 +82,7 @@ const LogoContainer = styled.div`
   img {
     width: 52px;
   }
-  h1{
+  h1 {
     font-family: "Righteous";
     font-style: normal;
     font-weight: 400;
@@ -54,4 +92,3 @@ const LogoContainer = styled.div`
     margin-left: 20px;
   }
 `;
-

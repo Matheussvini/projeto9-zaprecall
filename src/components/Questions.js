@@ -1,7 +1,7 @@
 import CardQuestion from "./CardQuestion";
 
 export default function Questions(props) {
-  const { cards, turnedCard, setTurnedCard } = props;
+  const { cards, turnedCard, setTurnedCard, array, setArray } = props;
 
   return (
     <ul>
@@ -11,6 +11,8 @@ export default function Questions(props) {
           quest={q}
           turnedCard={turnedCard}
           setTurnedCard={setTurnedCard}
+          array={array}
+          setArray={setArray}
         />
       ))}
     </ul>

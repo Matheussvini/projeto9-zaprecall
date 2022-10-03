@@ -1,27 +1,57 @@
-import playImg from "../images/seta_play.png";
+import PlayImg from "../images/seta_play.png";
 import turnImg from "../images/seta_virar.png";
 import { useState } from "react";
 import styled from "styled-components";
 import Answered from "./Answered";
+import ZapImg from "../images/icone_certo.png";
+import AlmostImg from "../images/icone_quase.png";
+import NotImg from "../images/icone_erro.png";
 
-export default function CardQuestion({ quest, turnedCard, setTurnedCard }) {
+export default function CardQuestion({
+  quest,
+  turnedCard,
+  setTurnedCard,
+  array,
+  setArray,
+}) {
   const { id, question, answer } = quest;
 
   const [cardFace, setCardFace] = useState("front");
-  const [result, setResult] = useState("");
+  const [localResult, setLocalResult] = useState("");
   const numberQuest = id + 1;
 
   function turnCard(i) {
     setCardFace("answer");
     setTurnedCard([...turnedCard, i]);
-  };
+  }
+
+  function answerCard(result) {
+    const newArray = [...array];
+    let image;
+
+    if (result === "Zap") {
+      image = ZapImg;
+    } else if (result === "Almost") {
+      image = AlmostImg;
+    } else if (result === "Not") {
+      image = NotImg;
+    }
+
+    newArray[numberQuest - 1] = (
+      <li>
+        <img src={image} />
+      </li>
+    );
+    setArray(newArray);
+    setLocalResult(result);
+  }
 
   return (
     <>
       <Front face={cardFace === "front"}>
         <p>Pergunta {numberQuest}</p>
         <img
-          src={playImg}
+          src={PlayImg}
           onClick={() => setCardFace("question")}
           alt="Ícone de play"
         />
@@ -37,25 +67,25 @@ export default function CardQuestion({ quest, turnedCard, setTurnedCard }) {
       <Answer face={cardFace === "answer"}>
         <p>{answer}</p>
         <ButtonsContainer>
-          <NotReaction onClick={() => setResult("not")}>
+          <NotReaction onClick={() => answerCard("Not")}>
             Não lembrei
           </NotReaction>
-          <AlmostReaction onClick={() => setResult("almost")}>
+          <AlmostReaction onClick={() => answerCard("Almost")}>
             Quase não lembrei
           </AlmostReaction>
-          <ZapReaction onClick={() => setResult("zap")}>Zap!</ZapReaction>
+          <ZapReaction onClick={() => answerCard("Zap")}>Zap!</ZapReaction>
         </ButtonsContainer>
       </Answer>
       <Answered
-        result={result}
+        result={localResult}
         numberQuest={numberQuest}
         setCardFace={setCardFace}
       />
     </>
   );
-};
+}
 
-const Front = styled.li`
+export const Front = styled.li`
   width: 300px;
   height: 35px;
   background-color: #ffffff;
