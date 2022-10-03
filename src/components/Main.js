@@ -5,13 +5,13 @@ import logo from "../images/logo.png";
 import { useState } from "react";
 import Footer from "./Footer";
 import PlayImg from "../images/seta_play.png";
-import ZapImg from "../images/icone_certo.png";
-import AlmostImg from "../images/icone_quase.png";
-import NotImg from "../images/icone_erro.png";
 import WelcomeUser from "./WelcomeUser";
 
 export default function Main() {
   const [turnedCard, setTurnedCard] = useState([]);
+  const [deck, setDeck] = useState(CARDS.react);
+  console.log(CARDS)
+  console.log(deck)
   const [array, setArray] = useState([
     <li>
       <img src={PlayImg} />
@@ -41,14 +41,14 @@ export default function Main() {
 
   return (
     <>
-      <WelcomeUser />
+      <WelcomeUser deck={deck} setDeck={setDeck}/>
       <ScreenContainer>
         <LogoContainer>
           <img src={logo} alt="Logo ZapRecall" />
           <h1>ZapRecall</h1>
         </LogoContainer>
         <Questions
-          cards={CARDS}
+          cards={deck}
           turnedCard={turnedCard}
           setTurnedCard={setTurnedCard}
           array={array}

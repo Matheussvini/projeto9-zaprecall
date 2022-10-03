@@ -20,12 +20,12 @@ export default function CardQuestion({
   const [localResult, setLocalResult] = useState("");
   const numberQuest = id + 1;
 
-  function turnCard(i) {
-    setCardFace("answer");
-    setTurnedCard([...turnedCard, i]);
-  }
+ // function turnCard(i) {
+   // setCardFace("answer");
+    //setTurnedCard([...turnedCard, i]);
+  //}
 
-  function answerCard(result) {
+  function answerCard(result, i) {
     const newArray = [...array];
     let image;
 
@@ -42,6 +42,7 @@ export default function CardQuestion({
         <img src={image} />
       </li>
     );
+    setTurnedCard([...turnedCard, i]);
     setArray(newArray);
     setLocalResult(result);
   }
@@ -60,20 +61,20 @@ export default function CardQuestion({
         <p>{question}</p>
         <img
           src={turnImg}
-          onClick={() => turnCard(numberQuest)}
+          onClick={() => setCardFace("answer")}
           alt="Ícone de inversão"
         />
       </Question>
       <Answer face={cardFace === "answer"}>
         <p>{answer}</p>
         <ButtonsContainer>
-          <NotReaction onClick={() => answerCard("Not")}>
+          <NotReaction onClick={() => answerCard("Not", numberQuest)}>
             Não lembrei
           </NotReaction>
-          <AlmostReaction onClick={() => answerCard("Almost")}>
+          <AlmostReaction onClick={() => answerCard("Almost", numberQuest)}>
             Quase não lembrei
           </AlmostReaction>
-          <ZapReaction onClick={() => answerCard("Zap")}>Zap!</ZapReaction>
+          <ZapReaction onClick={() => answerCard("Zap", numberQuest)}>Zap!</ZapReaction>
         </ButtonsContainer>
       </Answer>
       <Answered
@@ -85,7 +86,7 @@ export default function CardQuestion({
   );
 }
 
-export const Front = styled.li`
+const Front = styled.li`
   width: 300px;
   height: 35px;
   background-color: #ffffff;
@@ -154,6 +155,14 @@ const ButtonTemplate = styled.button`
   border: none;
   padding: 5px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  cursor: pointer;
+  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    &:hover {
+      color: #fff;
+      opacity: 70%;
+      box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+      transform: translateY(-5px);
+    };   
 `;
 const ZapReaction = styled(ButtonTemplate)`
   background-color: #2fbe34;

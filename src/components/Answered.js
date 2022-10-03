@@ -72,4 +72,11 @@ const Finish = styled(Front)`
     color: ${(props) => props.color};
     text-decoration: line-through;
   }
+  img{
+    cursor: default;
+    transition: initial;
+    &:hover{
+      all: initial;
+    }
+  }
 `;
