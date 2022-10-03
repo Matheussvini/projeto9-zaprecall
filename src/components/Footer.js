@@ -3,11 +3,9 @@ import styled from "styled-components";
 export default function Footer({ turnedCardLength, cardsLength }) {
   return (
     <Container>
-      
-
       <p>
         {turnedCardLength}/{cardsLength} CONCLUÍDOS
-      </p>
+      </p>      
     </Container>
   );
 }
