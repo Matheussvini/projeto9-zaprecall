@@ -13,6 +13,8 @@ export default function CardQuestion({
   setTurnedCard,
   array,
   setArray,
+  hits,
+  setHits
 }) {
   const { id, question, answer } = quest;
 
@@ -20,28 +22,28 @@ export default function CardQuestion({
   const [localResult, setLocalResult] = useState("");
   const numberQuest = id + 1;
 
- // function turnCard(i) {
-   // setCardFace("answer");
-    //setTurnedCard([...turnedCard, i]);
+  // function turnCard(i) {
+  // setCardFace("answer");
+  //setTurnedCard([...turnedCard, i]);
   //}
 
   function answerCard(result, i) {
     const newArray = [...array];
     let image;
-
     if (result === "Zap") {
+      setHits(hits + 1);
       image = ZapImg;
     } else if (result === "Almost") {
       image = AlmostImg;
     } else if (result === "Not") {
       image = NotImg;
     }
-
     newArray[numberQuest - 1] = (
       <li>
         <img src={image} />
       </li>
     );
+    //newArray.map((q, index) => console.log(q.includes(ZapImg)) )
     setTurnedCard([...turnedCard, i]);
     setArray(newArray);
     setLocalResult(result);
@@ -74,7 +76,9 @@ export default function CardQuestion({
           <AlmostReaction onClick={() => answerCard("Almost", numberQuest)}>
             Quase não lembrei
           </AlmostReaction>
-          <ZapReaction onClick={() => answerCard("Zap", numberQuest)}>Zap!</ZapReaction>
+          <ZapReaction onClick={() => answerCard("Zap", numberQuest)}>
+            Zap!
+          </ZapReaction>
         </ButtonsContainer>
       </Answer>
       <Answered
@@ -157,12 +161,12 @@ const ButtonTemplate = styled.button`
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   cursor: pointer;
   transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
-    &:hover {
-      color: #fff;
-      opacity: 70%;
-      box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-      transform: translateY(-5px);
-    };   
+  &:hover {
+    color: #fff;
+    opacity: 70%;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-5px);
+  }
 `;
 const ZapReaction = styled(ButtonTemplate)`
   background-color: #2fbe34;

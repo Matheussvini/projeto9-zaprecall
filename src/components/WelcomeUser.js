@@ -3,21 +3,27 @@ import styled from "styled-components";
 import { useState } from "react";
 import CARDS from "./cards";
 
-export default function WelcomeUser({ deck, setDeck }) {
+export default function WelcomeUser({ setDeck, goalDeck, setGoalDeck }) {
   const [optionValue, setOptionValue] = useState("");
   const [loadingPage, setLoadingPage] = useState(true);
-  const [goalDeck, setGoalDeck] = useState("");
   const [enableButton, setEnableButton] = useState(true);
 
   function load(value) {
     setLoadingPage(false);
     setDeck(CARDS[value]);
   }
-
-//  if(optionValue !== "" && goalDeck !== "" ){
-//    setEnableButton(false);
-//    console.log("botao habilitado")
-// }
+  function option(e) {
+    setOptionValue(e.target.value)
+    if (goalDeck !== "") {
+      setEnableButton(false);
+    }
+  }
+  function goal(e) {
+    setGoalDeck(e.target.value)
+    if (optionValue !== "") {
+      setEnableButton(false);
+    }
+  }
 
   return (
     <Tela show={loadingPage}>
@@ -26,22 +32,20 @@ export default function WelcomeUser({ deck, setDeck }) {
       <select
         name="seletor"
         value={optionValue}
-        onChange={(e) => setOptionValue(e.target.value)}
+        onChange={(e) => option(e)}
       >
         <option value="" disabled selected>
           Escolha seu deck
         </option>
-        <option value="JavaScript">JavaScript</option>
         <option value="react">React</option>
+        <option value="JavaScript">JavaScript</option>
       </select>
       <input
         placeholder="Digite sua meta de zaps..."
-        onChange={(e) => setGoalDeck(e.target.value)}
+        onChange={(e) => goal(e)}
         value={goalDeck}
       />
-      <button onClick={() => 
-      load(optionValue)} 
-      disabled={enableButton}>
+      <button onClick={() => load(optionValue)} disabled={enableButton}>
         Iniciar Recall!
       </button>
     </Tela>
@@ -134,8 +138,8 @@ const Tela = styled.div`
     font-family: "Recursive";
     font-style: normal;
     font-weight: 400;
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 14px;
+    line-height: 16px;
     text-align: center;
     color: #d70900;
     box-sizing: border-box;

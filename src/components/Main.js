@@ -6,12 +6,15 @@ import { useState } from "react";
 import Footer from "./Footer";
 import PlayImg from "../images/seta_play.png";
 import WelcomeUser from "./WelcomeUser";
+import CongratUser from "./CongratUser";
 
 export default function Main() {
   const [turnedCard, setTurnedCard] = useState([]);
   const [deck, setDeck] = useState(CARDS.react);
-  console.log(CARDS)
-  console.log(deck)
+  const [goalDeck, setGoalDeck] = useState("");
+  const [hits, setHits] = useState(0);
+  const [loadingEnd, setLoadingEnd] = useState(false);
+  const [achieved, setAchieved] = useState("");
   const [array, setArray] = useState([
     <li>
       <img src={PlayImg} />
@@ -39,9 +42,23 @@ export default function Main() {
     </li>,
   ]);
 
+  function endPage(a){
+    setAchieved(a)
+    setLoadingEnd(true)
+  }
+
+  if(turnedCard.length === 8){
+    if(hits >= goalDeck){
+      setTimeout(() => endPage(true), 1000)
+    } else{
+      setTimeout(() => endPage(false), 1000)      
+    }
+  }
+
   return (
     <>
-      <WelcomeUser deck={deck} setDeck={setDeck}/>
+      <WelcomeUser setDeck={setDeck} goalDeck={goalDeck} setGoalDeck={setGoalDeck} />
+      <CongratUser goalDeck={goalDeck} hits={hits} loadingEnd={loadingEnd} achieved={achieved} />
       <ScreenContainer>
         <LogoContainer>
           <img src={logo} alt="Logo ZapRecall" />
@@ -53,10 +70,12 @@ export default function Main() {
           setTurnedCard={setTurnedCard}
           array={array}
           setArray={setArray}
+          hits={hits}
+          setHits={setHits}
         />
         <Footer
           turnedCardLength={turnedCard.length}
-          cards={CARDS}
+          cards={deck}
           array={array}
           setArray={setArray}
         />
