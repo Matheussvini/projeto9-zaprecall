@@ -25,7 +25,6 @@ export default function WelcomeUser({
   }
   function goal(e) {
     const value = Number(e.target.value);
-    console.log(value);
     if (value < 1 || value > 8 || value === NaN) {
       let newValue = prompt("Por favor insira uma meta de zaps entre 1 a 8");
       newValue = Number(newValue);

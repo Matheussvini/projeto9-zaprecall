@@ -43,7 +43,6 @@ export default function CardQuestion({
         <img src={image} />
       </li>
     );
-    //newArray.map((q, index) => console.log(q.includes(ZapImg)) )
     setTurnedCard([...turnedCard, i]);
     setArray(newArray);
     setLocalResult(result);
